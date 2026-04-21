@@ -1,13 +1,18 @@
 .clients {
   background: var(--bg-secondary);
 
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   &__card {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 48px;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    padding: 40px;
     align-items: start;
     transition: border-color var(--transition);
 
@@ -15,7 +20,6 @@
 
     @media (max-width: 800px) {
       grid-template-columns: 1fr;
-      gap: 32px;
     }
   }
 
@@ -24,25 +28,39 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding-right: 48px;
+    padding: 36px 28px;
     border-right: 1px solid var(--border);
 
     @media (max-width: 800px) {
-      padding-right: 0;
       border-right: none;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-between;
+      padding: 24px;
     }
   }
 
   &__logo {
-    width: 160px;
+    width: 150px;
     object-fit: contain;
     filter: brightness(1.1);
 
-    @media (max-width: 800px) { width: 120px; }
+    &--light {
+      width: 140px;
+      filter: none;
+    }
+
+    @media (max-width: 800px) { width: 110px; }
+  }
+
+  &__logo-wrap--light {
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__country {
@@ -54,8 +72,30 @@
   }
 
   &__flag {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1;
+  }
+
+  &__period-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--gold-dim);
+    font-weight: 500;
+    text-align: center;
+
+    svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__info {
+    padding: 36px 40px;
+
+    @media (max-width: 800px) { padding: 24px; }
   }
 
   &__header {
@@ -63,12 +103,12 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     flex-wrap: wrap;
 
     h3 {
       font-family: 'Inter', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 4px;
@@ -85,30 +125,43 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #4ade80;
-    background: rgba(74, 222, 128, 0.08);
-    border: 1px solid rgba(74, 222, 128, 0.2);
     padding: 4px 12px;
     white-space: nowrap;
+    flex-shrink: 0;
 
     &::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: #4ade80;
+    }
+
+    &--active {
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.08);
+      border: 1px solid rgba(74, 222, 128, 0.2);
+
+      &::before { background: #4ade80; }
+    }
+
+    &--past {
+      color: var(--text-muted);
+      background: rgba(107, 90, 82, 0.1);
+      border: 1px solid rgba(107, 90, 82, 0.2);
+
+      &::before { background: var(--text-muted); }
     }
   }
 
   &__desc {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.8;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
   &__sites-label {
@@ -117,21 +170,21 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   &__sites-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 24px;
+    gap: 8px;
+    margin-bottom: 20px;
   }
 
   &__site {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 18px;
+    padding: 12px 16px;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     transition: border-color var(--transition), background var(--transition);
@@ -152,8 +205,8 @@
   }
 
   &__site-icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     color: var(--crimson-light);
     flex-shrink: 0;
 
@@ -173,8 +226,8 @@
   }
 
   &__site-arrow {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     color: var(--text-muted);
     flex-shrink: 0;
   }
