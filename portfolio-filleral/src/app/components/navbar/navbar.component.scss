@@ -1,0 +1,113 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: var(--transition);
+
+  &.scrolled {
+    background: rgba(14, 4, 8, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+
+    &:hover { color: var(--gold); }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+
+    a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      transition: color var(--transition);
+
+      &:hover { color: var(--text-primary); }
+    }
+
+    @media (max-width: 768px) { display: none; }
+  }
+
+  &__cta {
+    padding: 8px 20px;
+    border: 1px solid var(--crimson);
+    border-radius: 2px;
+    color: var(--crimson-light) !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    transition: background var(--transition), color var(--transition) !important;
+
+    &:hover {
+      background: var(--crimson);
+      color: var(--text-primary) !important;
+    }
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    &.open {
+      span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      span:nth-child(2) { opacity: 0; }
+      span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+
+    @media (max-width: 768px) { display: flex; }
+  }
+
+  &__mobile {
+    display: none;
+    flex-direction: column;
+    padding: 0 24px 20px;
+    gap: 4px;
+
+    &.open { display: flex; }
+
+    a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+
+      &:hover { color: var(--text-primary); }
+    }
+
+    @media (min-width: 769px) { display: none !important; }
+  }
+}

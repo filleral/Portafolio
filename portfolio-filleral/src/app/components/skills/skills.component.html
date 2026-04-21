@@ -1,0 +1,29 @@
+<section class="section skills" id="skills">
+  <div class="container">
+    <div class="section__header">
+      <span class="eyebrow">Tecnologías</span>
+      <h2>Stack & Habilidades</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills__grid">
+      <div class="skills__group" *ngFor="let group of skillGroups">
+        <h3 class="skills__group-title">{{ group.title }}</h3>
+        <div class="skills__tags">
+          <div class="skills__tag" *ngFor="let skill of group.skills" [class.featured]="skill.featured">
+            <span class="skills__tag-dot" *ngIf="skill.featured"></span>
+            {{ skill.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skills__soft">
+      <h3 class="skills__soft-title">Habilidades Blandas</h3>
+      <div class="skills__soft-list">
+        <div class="skills__soft-item" *ngFor="let s of softSkills">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+          {{ s }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

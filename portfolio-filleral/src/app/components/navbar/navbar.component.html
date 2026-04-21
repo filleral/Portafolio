@@ -1,0 +1,20 @@
+<nav class="navbar" [class.scrolled]="scrolled">
+  <div class="navbar__inner container">
+    <a class="navbar__logo" href="#hero">FM</a>
+    <ul class="navbar__links">
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#contact" class="navbar__cta">Contacto</a></li>
+    </ul>
+    <button class="navbar__burger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="navbar__mobile" [class.open]="menuOpen">
+    <a href="#about" (click)="closeMenu()">Sobre mí</a>
+    <a href="#skills" (click)="closeMenu()">Skills</a>
+    <a href="#projects" (click)="closeMenu()">Proyectos</a>
+    <a href="#contact" (click)="closeMenu()">Contacto</a>
+  </div>
+</nav>
