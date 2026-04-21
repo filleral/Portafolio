@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import emailjs from '@emailjs/browser';
 
-// EmailJS config — create free account at https://www.emailjs.com
-// and replace these values with yours
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = 'service_bpuqnos';
+const EMAILJS_TEMPLATE_ID = 'template_5xy2tr6';
+const EMAILJS_PUBLIC_KEY  = 'CHyr96IAPDKv5MqT1';
 
 export interface ContactPayload {
   from_name: string;
