@@ -9,10 +9,10 @@ import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent {
   @ViewChild('cursorGlow') cursorGlow!: ElementRef<HTMLDivElement>;
 
-  private targetX = 0;
-  private targetY = 0;
-  private currentX = 0;
-  private currentY = 0;
+  private targetX = -999;
+  private targetY = -999;
+  private currentX = -999;
+  private currentY = -999;
   private rafId = 0;
 
   ngAfterViewInit() {
@@ -26,13 +26,13 @@ export class AppComponent {
   }
 
   private animate() {
-    // Lerp for smooth lag effect
-    this.currentX += (this.targetX - this.currentX) * 0.08;
-    this.currentY += (this.targetY - this.currentY) * 0.08;
+    this.currentX += (this.targetX - this.currentX) * 0.12;
+    this.currentY += (this.targetY - this.currentY) * 0.12;
 
     if (this.cursorGlow) {
       const el = this.cursorGlow.nativeElement;
-      el.style.transform = `translate(${this.currentX}px, ${this.currentY}px)`;
+      el.style.left = `${this.currentX}px`;
+      el.style.top  = `${this.currentY}px`;
     }
 
     this.rafId = requestAnimationFrame(() => this.animate());
