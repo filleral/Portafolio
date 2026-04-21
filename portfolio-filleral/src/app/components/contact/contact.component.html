@@ -45,12 +45,24 @@
             </div>
             <div>
               <span class="contact__item-label">GitHub</span>
-              <span class="contact__item-value">github.com/filleral</span>
+              <span class="contact__item-value">github.com/Filleral</span>
             </div>
           </a>
         </div>
       </div>
-      <form class="contact__form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+
+      <!-- Success -->
+      <div class="contact__success" *ngIf="status === 'success'">
+        <div class="contact__success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Gracias por escribirme. Te responderé en menos de 24 horas.</p>
+        <button class="btn btn--ghost" (click)="status = 'idle'">Enviar otro mensaje</button>
+      </div>
+
+      <!-- Form -->
+      <form class="contact__form" (ngSubmit)="onSubmit()" #contactForm="ngForm" *ngIf="status !== 'success'">
         <div class="contact__field">
           <label for="name">Nombre</label>
           <input id="name" type="text" placeholder="Tu nombre" [(ngModel)]="form.name" name="name" required />
@@ -63,10 +75,23 @@
           <label for="message">Mensaje</label>
           <textarea id="message" rows="5" placeholder="Cuéntame sobre tu proyecto..." [(ngModel)]="form.message" name="message" required></textarea>
         </div>
-        <button type="submit" class="btn btn--primary contact__submit" [disabled]="contactForm.invalid">
-          Enviar mensaje
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
+
+        <div class="contact__form-footer">
+          <button type="submit" class="btn btn--primary contact__submit"
+            [disabled]="contactForm.invalid || status === 'sending'">
+            <span *ngIf="status !== 'sending'">
+              Enviar mensaje
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </span>
+            <span *ngIf="status === 'sending'" class="contact__spinner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              Enviando...
+            </span>
+          </button>
+          <p class="contact__error" *ngIf="status === 'error'">
+            Error al enviar. Intenta escribirme directo a filleral19&#64;gmail.com
+          </p>
+        </div>
       </form>
     </div>
   </div>

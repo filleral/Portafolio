@@ -151,6 +151,24 @@
     }
   }
 
+  &__timeline-company-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__timeline-logo {
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(1.1);
+  }
+
+  &__timeline-flag {
+    font-size: 14px;
+    margin-right: 2px;
+  }
+
   &__timeline-content {
     ul {
       margin: 10px 0 14px 16px;

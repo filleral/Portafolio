@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,13 +9,24 @@ import { Component } from '@angular/core';
 })
 export class ContactComponent {
   form = { name: '', email: '', message: '' };
-  submitted = false;
+  status: 'idle' | 'sending' | 'success' | 'error' = 'idle';
+
+  constructor(private emailSvc: EmailService) {}
 
   onSubmit() {
-    const { name, email, message } = this.form;
-    const subject = encodeURIComponent(`Contacto desde portafolio — ${name}`);
-    const body = encodeURIComponent(`Hola Filleral,\n\nMi nombre es ${name}.\n\n${message}\n\nCorreo: ${email}`);
-    window.location.href = `mailto:filleral19@gmail.com?subject=${subject}&body=${body}`;
-    this.submitted = true;
+    this.status = 'sending';
+    this.emailSvc
+      .send({
+        from_name: this.form.name,
+        from_email: this.form.email,
+        message: this.form.message,
+      })
+      .then(() => {
+        this.status = 'success';
+        this.form = { name: '', email: '', message: '' };
+      })
+      .catch(() => {
+        this.status = 'error';
+      });
   }
 }
